@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  color: white;
+}
+
+body {
+  background-color: rgb(18, 19, 24);
+}
+
+.head {
+  color: white;
+  text-align: center;
+  margin: 50px 0;
+  font-size: 30px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  gap: 30px;
+}
+
+.generate-container,
+.control-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.num-input {
+  background-color: #2d2d33;
+  width: 425px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 2px solid #4c4c55;
+}
+
+.num-input input,
+.num-input button {
+  border: none;
+}
+
+.num-input button {
+  background-color: #595961;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.num-input button:hover {
+  background-color: #6d6d75;
+}
+
+.num-input input {
+  width: 80%;
+  background-color: #2d2d33;
+  outline: none;
+}
+
+.control-container {
+  width: 425px;
+  direction: rtl;
+  gap: 10px;
+}
+
+.control-container .range {
+  width: 100%;
+}
+
+.control-container .range input {
+  width: 90%;
+}
+
+.output {
+  background-color: #27272b;
+  width: 425px;
+  height: 50px;
+  border: 2px solid;
+  display: flex;
+  padding: 5px;
+  border-radius: 5px;
+  align-items: center;
+}
+
+.output span {
+  width: 90%;
+  text-align: center;
+  line-height: 36px;
+  overflow: auto;
+  text-wrap: nowrap;
+}
+
+.output button {
+  background-color: #4c4c55;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.output button:hover {
+  background-color: #5a5a62;
+}
+
+.output button:active {
+  background-color: #6d6d75;
+}
+

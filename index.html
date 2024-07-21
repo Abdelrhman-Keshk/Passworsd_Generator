@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <h2 class="head">Password Generator</h2>
+        <div class="control-container">
+          <label for="s1">Capital letters ratio</label>
+         <div class="range"><input id="s1" type="range" value="40" min="0" max="100" /><span></span></div> 
+          <label for="s2">Small letters ratio</label>
+          <div class="range"><input id="s2" type="range" value="40" min="0" max="100" /><span></span></div>
+          <label for="s3">Digits ratio</label>
+          <div class="range"><input id="s3" type="range" value="19" min="0" max="100" /><span></span></div>
+          <label for="s4">Punctuation ratio</label>
+          <div class="range"><input id="s4" type="range" value="1" min="0" max="100" /><span></span></div>
+        </div>
+        <div class="generate-container">
+          <div class="num-input">
+            <input
+              id="lettersCount"
+              type="number"
+              placeholder="Enter the number of chars"
+              value=""
+            />
+            <button id="geneBtn">Generate</button>
+          </div>
+        </div>
+        <div class="output"><span></span><button id="copyBtn">copy</button></div>
+      </div>
+    </main>
+    <script src="js/script.js"></script>
+  </body>
+</html>
