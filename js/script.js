@@ -12,38 +12,52 @@ let lowerCaseRatio = document.getElementById("s2");
 let digitsRatio = document.getElementById("s3");
 let PunctuationRatio = document.getElementById("s4");
 let ratios = document.querySelectorAll(".range span");
+let totalRatio = document.querySelector(".total-ratio");
 
-function updateRatioText(ratioElement, ratioValue) {
-    ratioElement.textContent = ratioValue + "%";
-}
 
-ratios[0].textContent = upperCaseRatio.value + "%";
-upperCaseRatio.addEventListener("input", function () {
-    updateRatioText(ratios[0], upperCaseRatio.value);
-});
+(function updateRatios () {
+    function updateRatioText(ratioElement, ratioValue) {
+        ratioElement.textContent = ratioValue + "%";
+    }
+    ratios[0].textContent = upperCaseRatio.value + "%";
+    upperCaseRatio.addEventListener("input", function () {
+        updateRatioText(ratios[0], upperCaseRatio.value);
+        totalRatioChange ()
+    });
+    
+    ratios[1].textContent = lowerCaseRatio.value + "%";
+    lowerCaseRatio.addEventListener("input", function () {
+        updateRatioText(ratios[1], lowerCaseRatio.value);
+        totalRatioChange ()
+    });
+    
+    ratios[2].textContent = digitsRatio.value + "%";
+    digitsRatio.addEventListener("input", function () {
+        updateRatioText(ratios[2], digitsRatio.value);
+        totalRatioChange ()
+    });
+    
+    ratios[3].textContent = PunctuationRatio.value + "%";
+    PunctuationRatio.addEventListener("input", function () {
+        updateRatioText(ratios[3], PunctuationRatio.value);
+        totalRatioChange ()
+    });
+    
+    geneBtn.addEventListener("click", getRandomChars);
 
-ratios[1].textContent = lowerCaseRatio.value + "%";
-lowerCaseRatio.addEventListener("input", function () {
-    updateRatioText(ratios[1], lowerCaseRatio.value);
-});
+    function totalRatioChange () {
+        totalRatio.innerHTML = `<b>Total ratio:</b> ${+upperCaseRatio.value + +lowerCaseRatio.value + +digitsRatio.value + +PunctuationRatio.value}%`
+    };
 
-ratios[2].textContent = digitsRatio.value + "%";
-digitsRatio.addEventListener("input", function () {
-    updateRatioText(ratios[2], digitsRatio.value);
-});
+    totalRatioChange ()
+    
+}) ()
 
-ratios[3].textContent = PunctuationRatio.value + "%";
-PunctuationRatio.addEventListener("input", function () {
-    updateRatioText(ratios[3], PunctuationRatio.value);
-});
 
-geneBtn.addEventListener("click", getRandomChars);
 
 function getRandomChars() {
     let lettersCountValue = parseInt(lettersCount.value);
     
-  
-
     if (+upperCaseRatio.value + +lowerCaseRatio.value + +digitsRatio.value + +PunctuationRatio.value === 100) {
         if (lettersCountValue >= 6) {
             let part1 = Math.round(lettersCountValue * upperCaseRatio.value / 100);
@@ -51,36 +65,36 @@ function getRandomChars() {
             let part3 = Math.round(lettersCountValue * digitsRatio.value / 100);
             let part4 = Math.round(lettersCountValue * PunctuationRatio.value / 100);
     
-            let upperCaseShuffle = [];
-            let lowerCaseShuffle = [];
-            let digitsShuffle = [];
-            let punctuationShuffle = [];
+            let upperCaseRandom = [];
+            let lowerCaseRandom = [];
+            let digitsRandom = [];
+            let punctuationRandom = [];
     
             for (let u = 0; u < part1; u++) {
-                upperCaseShuffle.push(upperCaseLetters[Math.floor(Math.random() * upperCaseLetters.length)]);
+                upperCaseRandom.push(upperCaseLetters[Math.floor(Math.random() * upperCaseLetters.length)]);
             }
     
             for (let l = 0; l < part2; l++) {
-                lowerCaseShuffle.push(lowerCaseLetters[Math.floor(Math.random() * lowerCaseLetters.length)]);
+                lowerCaseRandom.push(lowerCaseLetters[Math.floor(Math.random() * lowerCaseLetters.length)]);
             }
     
             for (let d = 0; d < part3; d++) {
-                digitsShuffle.push(digits[Math.floor(Math.random() * digits.length)]);
+                digitsRandom.push(digits[Math.floor(Math.random() * digits.length)]);
             }
     
             for (let p = 0; p < part4; p++) {
-                punctuationShuffle.push(punctuation[Math.floor(Math.random() * punctuation.length)]);
+                punctuationRandom.push(punctuation[Math.floor(Math.random() * punctuation.length)]);
             }
     
-            let totalOfChars = upperCaseShuffle.concat(lowerCaseShuffle).concat(digitsShuffle).concat(punctuationShuffle);
+            let totalOfChars = upperCaseRandom.concat(lowerCaseRandom).concat(digitsRandom).concat(punctuationRandom);
             let result = shuffle(totalOfChars).join("");
             outputSpan.innerHTML = result;
         }else if (lettersCountValue <= 0) {
             alert("Please enter a valid number of characters.");
         }else if(lettersCountValue <= 6){
-            alert("Please enter a number bigger than 6")
+            alert("Please enter a number of at least 6")
         }else if(lettersCountValue != ""){
-            alert("Please enter a count of letters")
+            alert("Please enter the number of characters")
         }
 
     } else {
@@ -105,7 +119,5 @@ function copyToClipboard() {
         setTimeout(() => {
             copyBtn.textContent = "Copy";
         }, 1000); 
-    }).catch((err) => {
-        console.error('Failed to copy: ', err);
-    });
+    })
 }
